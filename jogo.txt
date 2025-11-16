@@ -1,0 +1,72 @@
+ using System;
+
+class SKYNET
+{
+     public string Escolha;
+}
+
+ class Sulivan : SKYNET
+{
+    public void Escolher() =>
+        Escolha = Console.ReadLine();
+
+}
+
+  class Jogo
+{
+      public void Vitoria() => Console.WriteLine("GANHOUUU!!!");
+   
+    public void Derrota() => Console.WriteLine("#PERDEU :/");
+
+  public void Iniciar()
+    {
+        Sulivan p1 = new Sulivan(); SKYNET pc = new SKYNET();
+        
+     
+     
+        int pontosP1 = 0, pontosSKY = 0;
+
+        for (int i = 0; i < 3; i++)
+        {
+            Console.Write("\nEscolha Pedra, Papel ou Tesoura: ");
+            p1.Escolher();
+
+               int numero = new Random().Next(3);
+
+if (numero == 0)
+    pc.Escolha = "pedra";
+else if (numero == 1)
+    pc.Escolha = "papel";
+else
+    pc.Escolha = "tesoura";
+
+            Console.WriteLine("SKYNET: " + pc.Escolha);
+
+              if (p1.Escolha == pc.Escolha)
+                Console.WriteLine("Empate!");
+            else if (
+                (p1.Escolha == "pedra" && pc.Escolha == "tesoura") ||
+                (p1.Escolha == "papel" && pc.Escolha == "pedra") ||
+                (p1.Escolha == "Tesoura" && pc.Escolha == "Papel")
+            ) {
+                Vitoria();
+                pontosP1++;
+            }
+          else {
+                Derrota();
+                pontosSKY++;
+            }
+        }
+
+ Console.WriteLine($"\nPlacar: \n Sulivan: {pontosP1} \n SKYNET: {pontosSKY}");
+    }
+}
+
+class Program
+{
+   static void Main()
+{
+       new Jogo().Iniciar();
+    }
+  }
+
